@@ -28,7 +28,7 @@ A **low-interaction honeypot system** written in Java designed to detect, log, a
 
 ```bash
 # Clone the repository
-git clone https://github.com/YOUR_USERNAME/JavaHoneypot.git
+git clone https://github.com/elmoisan/JavaHoneypot.git
 cd JavaHoneypot
 
 # Build the project
@@ -110,20 +110,46 @@ JavaHoneypot/
 ```
 ┌─────────────────────┐
 │   HoneypotServer    │
-│ ─────────────────── │
+├─────────────────────┤
 │ - services: List    │
+│ - logger: Logger    │
+├─────────────────────┤
 │ + start()           │
 │ + stop()            │
+│ + addService()      │
 └──────────┬──────────┘
            │
+           │ utilise
            ▼
+┌─────────────────────┐         ┌──────────────────┐
+│   <<interface>>     │◄────────│  SSHService      │
+│     Service         │         ├──────────────────┤
+├─────────────────────┤         │ - port: int      │
+│ + start()           │         │ + handleConn()   │
+│ + stop()            │         └──────────────────┘
+│ + getPort()         │
+└─────────────────────┘         ┌──────────────────┐
+           ▲                    │  HTTPService     │
+           └────────────────────│                  │
+                                └──────────────────┘
+
 ┌─────────────────────┐
-│   <<interface>>     │
-│      Service        │
-│ ─────────────────── │
-│ + start()           │
-│ + handleConnection()│
+│     AttackLog       │
+├─────────────────────┤
+│ - ipAddress: String │
+│ - port: int         │
+│ - timestamp: Date   │
+│ - data: String      │
+├─────────────────────┤
+│ + toJSON()          │
 └─────────────────────┘
+
+┌──────────────────────────────┐
+│            Main              │
+│ ──────────────────────────── │
+│ + main(String[] args)         │
+│ - printBanner()               │
+└──────────────────────────────┘
 ```
 
 ## Sample Log Output
