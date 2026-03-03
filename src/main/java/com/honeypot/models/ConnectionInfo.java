@@ -27,8 +27,8 @@ public class ConnectionInfo {
      * @param sourceIP The IP address of the connecting client 
      * @param sourcePort The port number used by the client
      * @param destinationPort The port number of the honeypot service
-    * @param protocol The protocol used (TCP, UDP, etc.)
-    * @param serviceName The name of the service being targeted (SSH, HTTP, etc.)
+        * @param protocol The protocol used (TCP, UDP, etc.)
+        * @param serviceName The name of the service being targeted (SSH, HTTP, etc.)
      */
 
     public ConnectionInfo(String sourceIP, int sourcePort, int destinationPort, String protocol, String serviceName){
@@ -74,7 +74,7 @@ public class ConnectionInfo {
     @Override
     public String toString(){
         return String.format(
-            "Connection from %s:%d to %s (port %d) via %s at %s ",
+            "Connection from %s:%d to %s (port %d) via %s at %s",
             sourceIP, sourcePort, serviceName, destinationPort, protocol, timestamp
         );
     }
@@ -105,13 +105,13 @@ public class ConnectionInfo {
     }
 
     /**
-    * Generates a hash code based on all fields
+     * Generates a hash code based on all fields
      * 
      * @return Hash code
      */
     @Override
     public int hashCode(){
-        return Objects.hash(sourceIP, sourceIP, destinationPort, protocol, timestamp);
+        return Objects.hash(sourceIP, sourcePort, destinationPort, protocol, serviceName, timestamp);
     }
 
 }
