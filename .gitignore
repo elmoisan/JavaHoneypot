@@ -16,9 +16,8 @@ env/
 .env
 *.env.local
 
-# Logs (keep only samples)
-logs/*.jsonl
-!logs/sample_attacks.jsonl
+# Logs
+logs/
 
 # IDE
 .vscode/
